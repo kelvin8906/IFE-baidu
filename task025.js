@@ -1,8 +1,9 @@
 $(document).ready(function(){
 	$('#special').on('click',openfolder);
 	$('.fa-folder').on('click',openfolder); //用来open folder和close folder
-	$('body').on('mouseover','span',showicon);
-	$('body').on('mouseout','span',hideicon);	
+	// $('body').on('mouseover','span',showicon);
+	// $('body').on('mouseout','span',hideicon);	
+	refresh();
 	$('body').on('click','.fa-times',dele)
 	$('#search').click(search); //按search进行搜索
 	$('input').keyup(function(e){
@@ -25,6 +26,12 @@ var openfolder = function(){
 					flag = true;
 					$(this).addClass("fa-folder").removeClass('fa-folder-open');
 				}
+}
+
+var refresh = function() {
+	$('body span').each(function(index, item) {
+		$(item).hover(showicon, hideicon)
+	});
 }
 
 var showicon = function(){
@@ -55,6 +62,7 @@ var search = function(){
 }
 	$('p>b').text(j);
 	$('#result').css('color','black');
+	refresh();
 }
 
 var clear = function(){
